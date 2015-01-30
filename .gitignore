@@ -1,0 +1,6 @@
+*.pdb
+*.user
+*.suo
+*.sln
+obj/
+lib/

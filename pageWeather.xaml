@@ -1,0 +1,171 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Life_at_hand" x:Class="Life_at_hand.pageWeather" 
+      mc:Ignorable="d" 
+      d:DesignHeight="334" d:DesignWidth="579"
+	Title="pageWeather" Height="345" Width="560" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <Style x:Key="MouseOver" TargetType="{x:Type Image}">
+            <!--<Setter Property="Control.FontSize" Value="20" />
+            <Setter Property="Control.Margin" Value="10" />-->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Effect" >
+                        <Setter.Value>
+                            <DropShadowEffect RenderingBias="Quality" Opacity="0.8" Direction="270" BlurRadius="8" ShadowDepth="1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CloseMouseOver" TargetType="{ x:Type Image}">
+            <Setter Property="Source" Value="res/close.png"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Source" >
+                        <Setter.Value>
+                            <BitmapImage UriSource="res/close_hover.png"></BitmapImage>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <Grid x:Name="GridMain">
+
+        <Grid x:Name="SettingLayer" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="3" d:IsHidden="True">
+            <Border CornerRadius="5" BorderBrush="#FF7A7A7A" BorderThickness="1" Width="318" Height="192">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="4" ShadowDepth="0" Direction="294"/>
+                </Border.Effect>
+                <Border.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.66"/>
+                </Border.Background>
+            </Border>
+            <Image x:Name="btnClose" Style="{StaticResource CloseMouseOver}" RenderTransformOrigin="0.5,0.5" MouseDown="btnClose_MouseDown" HorizontalAlignment="Right" VerticalAlignment="Top" Width="24" Height="24" Panel.ZIndex="2" Margin="0,4,7,0">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="45"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Grid Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" Height="111">
+                <Label Content="选择省份" Foreground="#FFFBFBFB" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,-1,0,0" />
+                <ComboBox x:Name="provinceList" HorizontalAlignment="Center" VerticalAlignment="Top" Width="139" IsEditable="True" SelectionChanged="provinceList_SelectionChanged" Margin="63,2,0,0" />
+                <Label Content="选择城市" Foreground="#FFFBFBFB" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,39,0,0" />
+                <ComboBox x:Name="cityList"  HorizontalAlignment="Center" VerticalAlignment="Top" Width="139" IsEditable="True" SelectionChanged="cityList_SelectionChanged" Margin="82,41,19,0" />
+                <Label Content="选择区域" Foreground="#FFFBFBFB" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,75,0,0" />
+                <ComboBox x:Name="areaList"  HorizontalAlignment="Center" VerticalAlignment="Top" Width="139" IsEditable="True" SelectionChanged="areaList_SelectionChanged" Margin="82,79,19,0" />
+            </Grid>
+
+        </Grid>
+
+        <local:DropDown x:Name="forecastList" HorizontalAlignment="Right" Margin="0,66,0,0" Foreground="{x:Null}" Width="162.232" />
+        <Label x:Name="titleName" Content="城市名" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" HorizontalContentAlignment="Center" Width="230" Margin="0" >
+            <Label.Effect>
+                <DropShadowEffect Direction="338" ShadowDepth="0" BlurRadius="3"/>
+            </Label.Effect>
+        </Label>
+        <WrapPanel Margin="0,5,5,0" HorizontalAlignment="Right" Height="37" VerticalAlignment="Top" Width="76">
+            <Image x:Name="btnSet" Style="{StaticResource MouseOver}" Source="res/setting.png" Margin="5,0,0,0" Cursor="Hand" VerticalAlignment="Top" HorizontalAlignment="Right" Height="32" Width="32" MouseDown="btnSet_MouseDown" />
+            <Image Margin="5,1,0,0" Style="{StaticResource MouseOver}" HorizontalAlignment="Right" VerticalAlignment="Top"  Source="res/refresh.png" Height="30" Width="30" Cursor="Hand" MouseDown="Image_MouseDown" />
+        </WrapPanel>
+        <Image x:Name="mainImg" Source="res/wth/19.png" Opacity="0.46" Margin="10,10,0,0" Stretch="None" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Border BorderThickness="0,1,1,1" HorizontalAlignment="Right" Width="300" Margin="0,47,0,0" VerticalAlignment="Top" Height="3" >
+            <Border.Effect>
+                <BlurEffect Radius="2"/>
+            </Border.Effect>
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="-90" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#FFF4F9FF"/>
+                    <GradientStop Color="#FF293C4F" Offset="0.696"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <WrapPanel Margin="98,66,247,196.5" Orientation="Horizontal">
+            <Label x:Name="temp" Content="0℃" HorizontalAlignment="Left" FontSize="72" FontFamily="Moire Light" VerticalAlignment="Top" Height="92.5" >
+                <Label.Effect>
+                    <DropShadowEffect Direction="338" ShadowDepth="0" BlurRadius="3"/>
+                </Label.Effect>
+            </Label>
+            <Label x:Name="lblWeather" Content="晴" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <Label.Effect>
+                    <DropShadowEffect Direction="338" ShadowDepth="0" BlurRadius="3"/>
+                </Label.Effect>
+            </Label>
+        </WrapPanel>
+        <Border Margin="116,188,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="439" Height="147" >
+            <Grid>
+                <Label x:Name="time" Content="1234567" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,121" >
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="3" Direction="277" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="windsd" Content="abcdefg" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,92" >
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="3" Direction="277" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="lblTips" Content="穿衣指数" FontSize="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="-92,0,0,-3">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="3" Direction="277" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Image HorizontalAlignment="Left" Margin="-2,30,0,88" VerticalAlignment="Center" Source="res/wave.png" Height="29" Width="25" Opacity="0.3" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-14.036"/>
+                            <TranslateTransform Y="4E-06"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Grid>
+        </Border>
+        <Border BorderBrush="#FF0080FF" BorderThickness="3,0,0,0" Margin="20,0,0,51" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="96" Height="106">
+            <WrapPanel Margin="0" Orientation="Vertical">
+                <Label x:Name="lbl_1" Content="紫外线：" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="3" Direction="277" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="lbl_2" Content="洗车：" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="3" Direction="277" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="lbl_3" Content="旅游：" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="3" Direction="277" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+                <Label x:Name="lbl_4" Content="舒适指数：" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="3" Direction="277" ShadowDepth="0"/>
+                    </Label.Effect>
+                </Label>
+
+            </WrapPanel>
+        </Border>
+        <Image HorizontalAlignment="Left" Height="23" Margin="4,0,0,8" VerticalAlignment="Bottom" Width="23" Source="res/excl.png"/>
+
+    </Grid>
+</Page>

@@ -1,0 +1,37 @@
+﻿<Page x:Class="Life_at_hand.pageMap"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="270.732" d:DesignWidth="298.955"
+	Title="pageMap" Width="560" Height="345" Loaded="Page_Loaded">
+    <Grid x:Name="GridMain">
+        <Label Content="目前翻译支持所有语言的互译，请先填写待翻译的文本，然后点击Go或回车" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,18,0,0">
+            <Label.Effect>
+                <DropShadowEffect BlurRadius="2" ShadowDepth="0"/>
+            </Label.Effect>
+        </Label>
+        <Grid Margin="80,66,82,248">
+            <Grid.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="8"/>
+            </Grid.Effect>
+            <TextBox x:Name="txtFrom" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="324" KeyDown="txtFrom_KeyDown"/>
+            <Label Content="Go" VerticalAlignment="Top" IsHitTestVisible="False" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0,-2,23,0" Panel.ZIndex="1" Foreground="White"/>
+            <Rectangle Fill="#FF0080FF" HorizontalAlignment="Right" Height="24" VerticalAlignment="Top" Width="72" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" Margin="0,0,2,0" Cursor="Hand" RadiusX="1" RadiusY="1"/>
+        </Grid>
+        <Border BorderThickness="5" HorizontalAlignment="Center" Height="225" VerticalAlignment="Bottom" Width="408" Margin="74.5,0,77.5,18" Padding="6" CornerRadius="3" Background="White" ToolTip="使用右键菜单进行复制">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="6" ShadowDepth="0"/>
+            </Border.Effect>
+            <TextBlock x:Name="txtResult" TextWrapping="Wrap" Text="TextBlock" Margin="0" FontSize="16" FontWeight="Bold">
+                <TextBlock.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="复制" Click="MenuItem_Click" />
+                    </ContextMenu>
+                </TextBlock.ContextMenu>
+            </TextBlock>
+        </Border>
+        <Image HorizontalAlignment="Left" Height="147" Margin="20,0,0,0" VerticalAlignment="Bottom" Width="142" Source="res/translate_1.png" Opacity="0.77"/>
+    </Grid>
+</Page>

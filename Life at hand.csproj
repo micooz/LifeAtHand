@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{10E9D170-709B-4589-9960-217B9516C3B0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Life_at_hand</RootNamespace>
+    <AssemblyName>Life at hand</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>cloudy2.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Life_at_hand.App</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="common.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="ForecastItem.xaml.cs">
+      <DependentUpon>ForecastItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pageAbout.xaml.cs">
+      <DependentUpon>pageAbout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pageTrans.xaml.cs">
+      <DependentUpon>pageTrans.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pageWeather.xaml.cs">
+      <DependentUpon>pageWeather.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="popMsg.xaml.cs">
+      <DependentUpon>popMsg.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Forecast.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ForecastItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Forecast.xaml.cs">
+      <DependentUpon>Forecast.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="pageAbout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pageTrans.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pageWeather.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="popMsg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\sun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\refresh.png" />
+    <Resource Include="res\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\close_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="res\wave.png" />
+    <Resource Include="res\excl.png" />
+    <Resource Include="res\gift.png" />
+    <Resource Include="res\about.png" />
+    <Resource Include="res\translate_1.png" />
+    <Resource Include="res\translate.png" />
+    <Resource Include="res\map.png" />
+    <Resource Include="res\wth.png" />
+    <Resource Include="res\power.png" />
+    <Resource Include="cloudy2.ico" />
+    <Content Include="lib\Newtonsoft.Json.dll" />
+    <Resource Include="res\wth\3.png" />
+    <Resource Include="res\wth\0.png" />
+    <Resource Include="res\wth\1.png" />
+    <Resource Include="res\wth\10.png" />
+    <Resource Include="res\wth\11.png" />
+    <Resource Include="res\wth\12.png" />
+    <Resource Include="res\wth\13.png" />
+    <Resource Include="res\wth\14.png" />
+    <Resource Include="res\wth\15.png" />
+    <Resource Include="res\wth\16.png" />
+    <Resource Include="res\wth\17.png" />
+    <Resource Include="res\wth\18.png" />
+    <Resource Include="res\wth\19.png" />
+    <Resource Include="res\wth\2.png" />
+    <Resource Include="res\wth\4.png" />
+    <Resource Include="res\wth\5.png" />
+    <Resource Include="res\wth\6.png" />
+    <Resource Include="res\wth\7.png" />
+    <Resource Include="res\wth\8.png" />
+    <Resource Include="res\wth\9.png" />
+    <Resource Include="res\wth\unkown.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
